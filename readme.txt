@@ -2,8 +2,8 @@
 Contributors: uppfinnarn
 Donate link: http://macaronicode.se/
 Tags: gtsplus, gpxplus, pokemon, game, widget
-Requires at least: 2.0.2
-Tested up to: 2.1
+Requires at least: 2.1
+Tested up to: 2.8
 Stable tag: 1.1
 
 Displays your party at GPXPlus.net
