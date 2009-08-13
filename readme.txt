@@ -4,7 +4,7 @@ Donate link: http://macaronicode.se/
 Tags: gtsplus, gpxplus, pokemon, game, widget
 Requires at least: 2.1
 Tested up to: 2.8
-Stable tag: 1.1
+Stable tag: 1.2
 
 Displays your party at GPXPlus.net
 
@@ -23,7 +23,8 @@ This plugin only requires that you know your display name to work, as it will fi
 5. Click Save Changes and check out your site!
 
 == Screenshots ==
-None yet...
+1. Message Activated with the Standard WP-Theme
+2. Message Disabled with NDesign's iTheme theme
 
 == Frequently Asked Questions ==
 
@@ -38,6 +39,10 @@ or if i find a super-rare event egg in the Lab/Shelter.
 
 == Changelog ==
 
+= 1.2 =
+* Added the option to resize all sprites to the size of an egg, solves layout problems for certain parties
+* Added message field, can now optionally display a short message above the eggs
+
 = 1.1 =
 * Uses Regular Expressions(REGEX) to find your Pokés: Less code for me, and more speed for you ;)
 
@@ -45,5 +50,3 @@ or if i find a super-rare event egg in the Lab/Shelter.
 * Original version
 * Uses JavaScript to extract the Pokés from the Party, but needs to load the entire page
 into an invisible DIV, which is very slow and clumsy...
-
-`<?php code(); // goes in backticks ?>`
