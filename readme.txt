@@ -39,16 +39,16 @@ or if i find a super-rare event egg in the Lab/Shelter.
 
 == Changelog ==
 
-= 1.2 =
+= 1.1 =
 * Added the option to resize all sprites to the size of an egg, solves layout problems for certain parties
 * Added message field, can now optionally display a short message above the eggs
 * Merged `show_pokes.php` into `gpxplus-widget.php` to allow for better integration
 * Fixed a bug that disabled the cache, i accidentally released a debug version with the cache-checking routine sat to `if(true == true)` which caused it to always assume that the cache was too old.
 
-= 1.1 =
+= 1.0 =
 * Uses Regular Expressions(REGEX) to find your Pokés: Less code for me, and more speed for you ;)
 
-= 1.0 =
+= 0.9 =
 * Original version
 * Uses JavaScript to extract the Pokés from the Party, but needs to load the entire page
 into an invisible DIV, which is very slow and clumsy...
