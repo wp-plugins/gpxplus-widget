@@ -4,7 +4,7 @@ Donate link: http://macaronicode.se/
 Tags: gtsplus, gpxplus, pokemon, game, widget
 Requires at least: 2.1
 Tested up to: 2.8
-Stable tag: 1.2
+Stable tag: 1.1
 
 Displays your party at GPXPlus.net
 
@@ -42,6 +42,8 @@ or if i find a super-rare event egg in the Lab/Shelter.
 = 1.2 =
 * Added the option to resize all sprites to the size of an egg, solves layout problems for certain parties
 * Added message field, can now optionally display a short message above the eggs
+* Merged `show_pokes.php` into `gpxplus-widget.php` to allow for better integration
+* Fixed a bug that disabled the cache, i accidentally released a debug version with the cache-checking routine sat to `if(true == true)` which caused it to always assume that the cache was too old.
 
 = 1.1 =
 * Uses Regular Expressions(REGEX) to find your Pokés: Less code for me, and more speed for you ;)
