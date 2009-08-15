@@ -4,7 +4,7 @@ Plugin Name: GPXPlus Widget
 Plugin URI: http://www.macaronicode.se/
 Description: A Widget for displaying your Party on GPXPlus.net
 Author: MacaroniCode Software
-Version: 1.0
+Version: 1.2
 Author URI: http://www.macaronicode.se/
 */
 
