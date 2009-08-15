@@ -4,7 +4,7 @@ Donate link: http://macaronicode.se/
 Tags: gtsplus, gpxplus, pokemon, game, widget
 Requires at least: 2.1
 Tested up to: 2.8
-Stable tag: 1.1
+Stable tag: 1.2
 
 Displays your party at GPXPlus.net
 
@@ -38,6 +38,9 @@ Myself i always have an open slot in my party, just in case of events i've misse
 or if i find a super-rare event egg in the Lab/Shelter.
 
 == Changelog ==
+
+= 1.2 =
+* Fixed some bugs... If your widget only prints `GPXWIDGET_POKEHTML`, try updating
 
 = 1.1 =
 * Added the option to resize all sprites to the size of an egg, solves layout problems for certain parties
