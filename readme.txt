@@ -39,6 +39,15 @@ or if i find a super-rare event egg in the Lab/Shelter.
 
 == Changelog ==
 
+= 1.3.1 =
+* Aaaah! How stupid could you possibly be? I forgot to remove the Auto-Decay mode i use for debugging, 
+  everyone <b><i>UPDATE!!!</i></b> the Auto-decay mode causes the plugin to think that the cache is always
+  too old, and thus fetch a new cache, which is exactly what i want when i fix something about the caching
+  function, but i certainly don't want everyone else to bypass my caching system!!
+* The smallest update yet: 1 word changed, and it makes miracles.
+  When i rewrote the caching routine i forgot to include support for the sprite selection system, so the
+  Display-box in the prefs had no effect...
+
 = 1.3 =
 * Rewrote the Fetching-mechanics so that it now uses a single REGEX to fetch the list, and does no
   longer rely heavily on `str_replace` to insert stuff into the tags, now it re-creates the links from
