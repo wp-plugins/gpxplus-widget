@@ -2,9 +2,9 @@
 Contributors: uppfinnarn
 Donate link: http://macaronicode.se/
 Tags: gtsplus, gpxplus, pokemon, game, widget
-Requires at least: 2.0.2
-Tested up to: 2.1
-Stable tag: 1.1
+Requires at least: 2.1
+Tested up to: 2.8
+Stable tag: 1.3
 
 Displays your party at GPXPlus.net
 
@@ -23,7 +23,8 @@ This plugin only requires that you know your display name to work, as it will fi
 5. Click Save Changes and check out your site!
 
 == Screenshots ==
-None yet...
+1. Message Activated with the Standard WP-Theme
+2. Message Disabled with NDesign's iTheme theme
 
 == Frequently Asked Questions ==
 
@@ -38,12 +39,40 @@ or if i find a super-rare event egg in the Lab/Shelter.
 
 == Changelog ==
 
+= 1.3.1 =
+* Aaaah! How stupid could you possibly be? I forgot to remove the Auto-Decay mode i use for debugging, 
+  everyone <b><i>UPDATE!!!</i></b> the Auto-decay mode causes the plugin to think that the cache is always
+  too old, and thus fetch a new cache, which is exactly what i want when i fix something about the caching
+  function, but i certainly don't want everyone else to bypass my caching system!!
+* The smallest update yet: 1 word changed, and it makes miracles.
+  When i rewrote the caching routine i forgot to include support for the sprite selection system, so the
+  Display-box in the prefs had no effect...
+
+= 1.3 =
+* Rewrote the Fetching-mechanics so that it now uses a single REGEX to fetch the list, and does no
+  longer rely heavily on `str_replace` to insert stuff into the tags, now it re-creates the links from
+  scratch and inserts when it comes to the right position.
+* Considering if i should rewrite the fetch-pokes module(`gpxWidget_cache()`) to a stand-alone API...?
+
+= 1.2.1 =
+* You can now choose what size to resize to.
+  If you set either width or height to 0, they will be rescaled according to the other number, 
+  or set both to 0 for no resizing at all(or simply uncheck the box -.-).
+
+= 1.2 =
+* Fixed some bugs... If your widget only prints `GPXWIDGET_POKEHTML`, try updating
+
 = 1.1 =
-* Uses Regular Expressions(REGEX) to find your Pokés: Less code for me, and more speed for you ;)
+* Added the option to resize all sprites to the size of an egg, solves layout problems for certain parties
+* Added message field, can now optionally display a short message above the eggs
+* Merged `show_pokes.php` into `gpxplus-widget.php` to allow for better integration
+* Fixed a bug that disabled the cache, i accidentally released a debug version with the cache-checking
+  routine sat to `if(true == true)` which caused it to always assume that the cache was too old.
 
 = 1.0 =
+* Uses Regular Expressions(REGEX) to find your Pokés: Less code for me, and more speed for you ;)
+
+= 0.9 =
 * Original version
 * Uses JavaScript to extract the Pokés from the Party, but needs to load the entire page
 into an invisible DIV, which is very slow and clumsy...
-
-`<?php code(); // goes in backticks ?>`
