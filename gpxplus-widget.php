@@ -4,7 +4,7 @@ Plugin Name: GPXPlus Widget
 Plugin URI: http://www.macaronicode.se/
 Description: A Widget for displaying your Party on GPXPlus.net
 Author: MacaroniCode Software
-Version: 1.2.1
+Version: 1.3
 Author URI: http://www.macaronicode.se/
 */
 
@@ -14,8 +14,8 @@ function gpxWidget()
 	$cache = get_option("gpxWidget_cache", "");
 	$timestamp = get_option("gpxWidget_timestamp", 0);
 	
-	if($timestamp < (time() - 1000) || $cache == "" || $timestamp == 0)
-	//if(true == true)
+	//if($timestamp < (time() - 1000) || $cache == "" || $timestamp == 0)
+	if(true == true)
 	{
 		$freshcache = gpxWidget_cache();
 		update_option("gpxWidget_cache", htmlentities($freshcache));
@@ -37,14 +37,10 @@ function gpxWidget_cache()
 	$resize = get_option("gpxWidget_resize", "false");
 	$height = get_option("gpxWidget_height", 0);
 	$width = get_option("gpxWidget_width", 0);
+	$display = get_option("gpxWidget_display", "image");
 	$return = "";
 	
 	$return = $return."<div id=\"gpxWidget-content\">";
-	$return = $return."<style type=\"text/css\">";
-	$return = $return."	a{border: none;}";
-	$return = $return."	img{border: none;}";
-	$return = $return."	a img{border: none;}";
-	$return = $return."</style>";
 	
 	$html = file_get_contents("http://gpxplus.net/user/".urlencode($username));
 	$html = stristr($html, '<table class="view_party_table" cellspacing="0px" cellpadding="2px">');
@@ -52,26 +48,26 @@ function gpxWidget_cache()
 	$html = substr($html, 0, $endpos);
 	$html = str_replace("http://gpxplus.net/info/", "http://gpxplus.net/", $html);
 	
-	preg_match_all('<a href="http://gpxplus.net/[A-Za-z0-9]*" title="[^"]*">', $html, $links);
-	preg_match_all('<img src="[^"]*" alt="[A-Za-z0-9]*" />', $html, $imgs);
+	preg_match_all('#img/[^"/]*/[^"/]*/[^"/]*#', $html, $r_urls);
 	
-	$pokehtml = "";
-	if($message != "") $pokehtml = $message."<br />";
-	
-	for($i = 0; $i < sizeof($links[0]); $i++)
+	for($i = 0; $i < sizeof($r_urls[0]); $i++)
 	{
-		$pokehtml = $pokehtml."<".$links[0][$i]."><".$imgs[0][$i]."></a>";
-	}
-	
-	if($resize == "true")
-	{
-		if($height != 0 && $width != 0)
-			$pokehtml = str_replace("img src",
-			"img width=\"".$width."\" height=\"".$height."\" src", $pokehtml);
-		else if($height != 0 && $width == 0)
-			$pokehtml = str_replace("img src", "img height=\"".$height."\" src", $pokehtml);
-		else if($height == 0 && $width != 0)
-			$pokehtml = str_replace("img src", "img width=\"".$width."\" src", $pokehtml);
+		$ids[$i] = substr(strrchr($r_urls[0][$i], "/"), 1);
+		$dirs[$i] = substr(substr($r_urls[0][$i], 0, strrpos($r_urls[0][$i], "/")), 3);
+		
+		print "<a href=\"http://gpxplus.net/".$ids[$i]."\" target=\"_blank\">";
+		print "<img";
+		if($resize == "true")
+		{
+			if($height != 0 && $width != 0)
+				print "img width=\"".$width."\" height=\"".$height."\"";
+			else if($height != 0 && $width == 0)
+				print "img height=\"".$height."\"";
+			else if($height == 0 && $width != 0)
+				print "img width=\"".$width."\"";
+		}
+		print " src=\"http://img.gpxplus.net/".$dirs[$i]."/".$ids[$i]."/image.png\" border=\"0\" />";
+		print "</a>\n";
 	}
 	
 	$return = $return.$pokehtml;
@@ -105,6 +101,7 @@ function gpxWidget_control()
 		update_option("gpxWidget_resize", $_POST['gpxWidget-Resize']);
 		update_option("gpxWidget_height", intval($_POST['gpxWidget-Height']));
 		update_option("gpxWidget_width", intval($_POST['gpxWidget-Width']));
+		update_option("gpxWidget_display", $_POST['gpxWidget-Display']);
 	}
 	
 	$username = get_option("gpxWidget_username", "");
@@ -114,6 +111,9 @@ function gpxWidget_control()
 	$resize = get_option("gpxWidget_resize", "false");
 	$height = get_option("gpxWidget_height", 30);
 	$width = get_option("gpxWidget_width", 28);
+	$display = get_option("gpxWidget_display", "image");
+	
+	$sl = "selected=\"selected\" ";
 	?>
 	<p align="left" style="text-align: left;">
 		<label for="gpxWidget-Username">Name:</label>
@@ -130,6 +130,14 @@ function gpxWidget_control()
 		<a href="#" onclick="alert('Enter a message to display above your eggs.\n' + 
 											'You can use HTML formatting.\n' + 
 											'Leave blank for no message.');">?</a>
+		<br />
+		<label for="gpxWidget-Display">Display</label>
+		<select name="gpxWidget-Display" id="gpxWidget-Display">
+	<option value="image" <?php if($display == "image") print $sl; ?>>Sprite</option>			
+	<option value="badge" <?php if($display == "badge") print $sl; ?>>Badge</option>
+	<option value="icon" <?php if($display == "icon") print $sl; ?>>Gen III Party</option>
+  		</select>
+		<br />
 		<br />
 		<label for="gpxWidget-Resize">Resize Sprites</label>
 		<input type="checkbox" align="right" name="gpxWidget-Resize" id="gpxWidget-Resize" 

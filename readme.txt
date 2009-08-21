@@ -4,7 +4,7 @@ Donate link: http://macaronicode.se/
 Tags: gtsplus, gpxplus, pokemon, game, widget
 Requires at least: 2.1
 Tested up to: 2.8
-Stable tag: 1.2.1
+Stable tag: 1.3
 
 Displays your party at GPXPlus.net
 
@@ -39,10 +39,16 @@ or if i find a super-rare event egg in the Lab/Shelter.
 
 == Changelog ==
 
+= 1.3 =
+* Rewrote the Fetching-mechanics so that it now uses a single REGEX to fetch the list, and does no
+  longer rely heavily on `str_replace` to insert stuff into the tags, now it re-creates the links from
+  scratch and inserts when it comes to the right position.
+* Considering if i should rewrite the fetch-pokes module(`gpxWidget_cache()`) to a stand-alone API...?
+
 = 1.2.1 =
 * You can now choose what size to resize to.
   If you set either width or height to 0, they will be rescaled according to the other number, 
-  or set both to 0 for no resizing at all(or simply uncheck the box).
+  or set both to 0 for no resizing at all(or simply uncheck the box -.-).
 
 = 1.2 =
 * Fixed some bugs... If your widget only prints `GPXWIDGET_POKEHTML`, try updating
@@ -51,7 +57,8 @@ or if i find a super-rare event egg in the Lab/Shelter.
 * Added the option to resize all sprites to the size of an egg, solves layout problems for certain parties
 * Added message field, can now optionally display a short message above the eggs
 * Merged `show_pokes.php` into `gpxplus-widget.php` to allow for better integration
-* Fixed a bug that disabled the cache, i accidentally released a debug version with the cache-checking routine sat to `if(true == true)` which caused it to always assume that the cache was too old.
+* Fixed a bug that disabled the cache, i accidentally released a debug version with the cache-checking
+  routine sat to `if(true == true)` which caused it to always assume that the cache was too old.
 
 = 1.0 =
 * Uses Regular Expressions(REGEX) to find your Pokés: Less code for me, and more speed for you ;)
