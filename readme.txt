@@ -4,7 +4,7 @@ Donate link: http://macaronicode.se/
 Tags: gtsplus, gpxplus, pokemon, game, widget
 Requires at least: 2.1
 Tested up to: 2.8
-Stable tag: 1.3
+Stable tag: 1.3.1
 
 Displays your party at GPXPlus.net
 
