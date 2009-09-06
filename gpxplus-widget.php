@@ -4,7 +4,7 @@ Plugin Name: GPXPlus Widget
 Plugin URI: http://www.macaronicode.se/
 Description: A Widget for displaying your Party on GPXPlus.net
 Author: MacaroniCode Software
-Version: 1.3
+Version: 1.3.2
 Author URI: http://www.macaronicode.se/
 */
 
@@ -14,8 +14,8 @@ function gpxWidget()
 	$cache = get_option("gpxWidget_cache", "");
 	$timestamp = get_option("gpxWidget_timestamp", 0);
 	
-	//if($timestamp < (time() - 1000) || $cache == "" || $timestamp == 0)
-	if(true == true)
+	if($timestamp < (time() - 1000) || $cache == "" || $timestamp == 0)
+	//if(true == true)
 	{
 		$freshcache = gpxWidget_cache();
 		update_option("gpxWidget_cache", htmlentities($freshcache));
